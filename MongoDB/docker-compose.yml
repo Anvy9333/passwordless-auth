@@ -1,0 +1,23 @@
+services:
+  mongo:
+    image: mongo:7
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: adminpass
+    volumes:
+      - mongo_data:/data/db
+#GUI for MongoDB
+  mongo-express:
+    image: mongo-express
+    depends_on: [mongo]
+    ports:
+      - "127.0.0.1:8081:8081"  
+    environment:
+      ME_CONFIG_MONGODB_URL: "mongodb://admin:adminpass@mongo:27017/?authSource=admin"
+      ME_CONFIG_BASICAUTH_USERNAME: admin   
+      ME_CONFIG_BASICAUTH_PASSWORD: adminpass 
+      ME_CONFIG_SITE_BASEURL: "/"
+volumes:
+  mongo_data:

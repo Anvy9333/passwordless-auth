@@ -1,0 +1,17 @@
+# dependencies
+node_modules/
+
+# env files
+.env
+.env.*
+!.env.example
+
+# build artifacts
+dist/
+build/
+
+# sensitive cryptographic material
+*.key
+*.p12
+*.pfx
+
